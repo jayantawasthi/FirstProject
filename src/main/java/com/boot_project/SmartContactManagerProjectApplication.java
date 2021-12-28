@@ -1,0 +1,16 @@
+package com.boot_project;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+
+public class SmartContactManagerProjectApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SmartContactManagerProjectApplication.class, args);
+		System.out.println("hello world");
+	}
+
+}

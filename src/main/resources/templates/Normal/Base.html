@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${title}"></title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
+<link rel="stylesheet" th:href="@{/CustomCss/style.css}">
+<link rel="stylesheet" th:href="@{/CustomCss/Contacts_profile.css}">
+<!-- <link rel="stylesheet" th:href="@{/CustomCss/searchfield.css}"> -->
+<link rel="stylesheet" th:href="@{/css/all.css}">
+
+</head>
+<body>
+	<!-- navbar -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark  bg-primary">
+		<a class="navbar-brand" href="#">Smart Contact Manager</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto text-uppercase">
+
+				<li class="nav-item active"><a class="nav-link" th:href="@{/}"
+					href="#">Home <span class="sr-only">(current)</span>
+				</a></li>
+
+				
+
+				<li class="nav-item"><a class="nav-link " ><span th:text="${user.name}"></span></a></li>
+				
+				<li class="nav-item"><a class="nav-link " th:href="@{/logout}"
+					href="#">LogOut</a></li>
+
+			</ul>
+
+		</div>
+	</nav>
+
+	<!--end of navbar  -->
+	<div class="sidebar mt-2" >
+					<span class="cross-btn" onclick="toggleSidebar()">&times;</span>
+					
+					<a id="home-link" href="#" th:href="@{/user/index}" class="item active"><img alt="" style="width: 35px;margin-right: 10px" th:src="@{/Image/home.png}">HOME</a>
+					
+					<a id="view-link" href="#" th:href="@{/user/showcontact/0}" class="item"> <img alt="" style="width: 35px" th:src="@{/Image/phone-book.png}">View Contacts</a>
+					
+					<a id="add-link" href="#" th:href="@{/user/contactform}" class="item"><img alt="" style=" width: 35px" th:src="@{/Image/Register.png}">Add Contact</a>
+					
+					
+						<a id="profile-link" href="#" th:href="@{/user/profile}" class="item"><img alt="" style="width: 35px" th:src="@{/Image/user.png}">Your Profile</a>
+				
+					
+					<a id="setting-link" href="#" th:href="@{/user/setting}"  class="item"><img alt="" style="width: 33px;margin-right: 10px" th:src="@{/Image/settings.png}">Setting</a>
+					
+					<a href="#" th:href="@{/logout}" class="item"><img alt="" style="width: 35px" th:src="@{/Image/arrow.png}">Logout</a>
+					
+					<div class="divider"></div>
+			</div>
+
+	<div class="content mt-5">
+
+		<i class="" onclick="toggleSidebar()"><img alt=""
+			style="width: 30px"  class="mt-3 ml-3" th:src="@{/Image/menu.png}" src=""></i>
+
+
+
+		<div class="container" th:if="${session.message}">
+			<div th:classappend="${'alert-'+session.message.type}"
+				class="alert text-center">
+				<span th:text="${session.message.content}"></span>
+
+			</div>
+			<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+
+		</div>
+
+		<div th:replace="${content}"></div>
+
+	</div>
+
+
+
+	<!-- <div th:replace="${content}"></div> -->
+
+	<script type="text/javascript" src="/js/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" th:src="@{/CustomJs/script.js}"></script>
+
+
+ <!-- Sweet alert -->
+	<!-- <script type="text/javascript">
+			
+	function deleteContact(cid)
+	{
+		swal({
+			  title: "Are you sure?",
+			  text: "Do you want Delete this Contact !",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+			    window.location="user/delete"+cid;
+			  } else {
+			    swal("Your Contact is Safe!");
+			  }
+			});
+	}
+	
+	</script> -->
+	
+</body>
+</html>
